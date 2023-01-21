@@ -22,7 +22,6 @@ fn create_view(new_view: CreateView) {
     println!("Creating view: {:?}", new_view);
     use crate::schema::views::dsl::*;
 
-    let connection = establish_connection();
     let new_view = NewView {
         user_id: new_view.user_id,
         video_id: new_view.video_id,
@@ -32,7 +31,7 @@ fn create_view(new_view: CreateView) {
 
     diesel::insert_into(views)
         .values(&new_view)
-        .execute(&connection)
+        .execute(&mut establish_connection())
         .expect("Error saving new view");
 }
 
@@ -41,10 +40,8 @@ fn show_views() {
 
     use crate::schema::views::dsl::*;
 
-    let connection = establish_connection();
-
     let results = views
-        .load::<DBView>(&connection)
+        .load::<DBView>(&mut establish_connection())
         .expect("Error loading views");
 
     println!("Displaying {} views", results.len());
@@ -60,8 +57,6 @@ fn show_views_pretty() {
     use crate::schema::videos;
     use crate::schema::views;
 
-    let connection = establish_connection();
-
     let results = views::table
         .inner_join(videos::table)
         .inner_join(users::table)
@@ -71,7 +66,7 @@ fn show_views_pretty() {
             views::watch_start,
             views::duration,
         ))
-        .load::<(String, String, chrono::NaiveDateTime, i32)>(&connection)
+        .load::<(String, String, chrono::NaiveDateTime, i32)>(&mut establish_connection())
         .expect("Error loading views");
 
     for view in results {

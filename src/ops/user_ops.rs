@@ -25,7 +25,6 @@ fn create_user(user: CreateUser) {
     println!("Creating user: {:?}", user);
     use crate::schema::users::dsl::*;
 
-    let connection = establish_connection();
     let new_user = NewUser {
         name: &user.name,
         email: &user.email,
@@ -34,7 +33,7 @@ fn create_user(user: CreateUser) {
 
     diesel::insert_into(users)
         .values(&new_user)
-        .execute(&connection)
+        .execute(&mut establish_connection())
         .expect("Error saving new user");
 }
 
@@ -42,7 +41,6 @@ fn update_user(user: UpdateUser) {
     println!("Updating user: {:?}", user);
     use crate::schema::users::dsl::*;
 
-    let connection = establish_connection();
     let db_user = DBUser {
         id: user.id,
         name: user.name,
@@ -52,7 +50,7 @@ fn update_user(user: UpdateUser) {
 
     diesel::update(users.find(user.id))
         .set(&db_user)
-        .execute(&connection)
+        .execute(&mut establish_connection())
         .expect("Error updating user");
 }
 
@@ -60,17 +58,15 @@ fn delete_user(user: DeleteEntity) {
     println!("Deleting user: {:?}", user);
     use crate::schema::users::dsl::*;
 
-    let connection = establish_connection();
     diesel::delete(users.find(user.id))
-        .execute(&connection)
+        .execute(&mut establish_connection())
         .expect("Error deleting user");
 }
 
 fn show_users() {
     use crate::schema::users::dsl::*;
 
-    let connection = establish_connection();
-    let results = users.load::<DBUser>(&connection).unwrap();
+    let results = users.load::<DBUser>(&mut establish_connection()).unwrap();
 
     println!("Displaying {} users", results.len());
     for user in results {
