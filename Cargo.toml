@@ -1,0 +1,14 @@
+[package]
+name = "rustflix"
+version = "0.1.0"
+edition = "2021"
+authors = ["Apoclyps"]
+description = "A CLI interface for tracking media on a popular streaming service"
+
+[dependencies]
+# diesel = { version = "2.0.0", features = ["postgres", "chrono"] }
+chrono = "0.4.23"
+clap = { version = "4.1.1", features = ["derive"] }
+diesel = { version = "1.4.8", features = ["postgres", "chrono"] }
+dotenv = "0.15.0"
+
