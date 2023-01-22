@@ -1,0 +1,28 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-merge-conflict
+      - id: sort-simple-yaml
+      - id: mixed-line-ending
+        args: ["--fix=lf"]
+        description: Forces to replace line ending by the UNIX 'lf' character.
+      - id: check-added-large-files
+        args: ["--maxkb=500"]
+      - id: check-yaml
+      - id: check-json
+        files: ^tests/app/
+      - id: pretty-format-json
+        args: ["--no-sort-keys", "--autofix"]
+
+  - repo: meta
+    hooks:
+      - id: check-useless-excludes
+
+  - repo: https://github.com/doublify/pre-commit-rust
+    rev: v1.0
+    hooks:
+      - id: fmt
+      - id: cargo-check
