@@ -3,7 +3,7 @@ use crate::schema::videos;
 use crate::schema::views;
 
 #[derive(Insertable)]
-#[table_name = "users"]
+#[diesel(table_name = users)]
 pub struct NewUser<'a> {
     pub name: &'a str,
     pub email: &'a str,
@@ -19,7 +19,7 @@ pub struct User {
 }
 
 #[derive(Insertable)]
-#[table_name = "videos"]
+#[diesel(table_name = videos)]
 pub struct NewVideo<'a> {
     pub title: &'a str,
     pub description: &'a str,
@@ -35,7 +35,7 @@ pub struct Video {
 }
 
 #[derive(Insertable)]
-#[table_name = "views"]
+#[diesel(table_name = views)]
 pub struct NewView<'a> {
     pub video_id: i32,
     pub user_id: i32,
