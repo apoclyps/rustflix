@@ -4,6 +4,8 @@
 
 This project is an extension onto the [Rust & SQL Databases (With Diesel)](https://www.youtube.com/watch?v=tRC4EIKhMzw) and [Rust Command Line Argument Parsing (A Better Way With Clap)](https://www.youtube.com/watch?v=fD9ptABVQbI) videos provided by [Code to the Moon](https://www.youtube.com/@codetothemoon).
 
+[![asciicast](https://asciinema.org/a/kNyue1psup31JDwtYYwV4gtaV.svg)](https://asciinema.org/a/kNyue1psup31JDwtYYwV4gtaV)
+
 ## Prerequisites
 
 You will need to install the following dependency on your host to use `diesel`:
@@ -54,9 +56,9 @@ rustflix video create --help
 #### Creating a video
 
 ```bash
-rustflix video create "Career Opportunities" "A movie from the early 90's recently popularised by dark synthwave artist Mr.Kitty in his song `After Dark`"
+rustflix video create "Career Opportunities" "A movie from the early 90's recently popularised by dark synthwave artist Mr.Kitty in his song After Dark"
 
-> Creating video: CreateVideo { title: "Career Opportunities", description: "A movie from the early 90's recently popularised by dark synthwave artist Mr.Kitty in his song `After Dark`" }
+> Creating video: CreateVideo { title: "Career Opportunities", description: "A movie from the early 90's recently popularised by dark synthwave artist Mr.Kitty in his song After Dark" }
 ```
 
 #### Viewing a video
