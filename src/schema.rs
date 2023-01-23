@@ -31,8 +31,4 @@ diesel::table! {
 diesel::joinable!(views -> users (user_id));
 diesel::joinable!(views -> videos (video_id));
 
-diesel::allow_tables_to_appear_in_same_query!(
-    users,
-    videos,
-    views,
-);
+diesel::allow_tables_to_appear_in_same_query!(users, videos, views);

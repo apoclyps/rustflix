@@ -11,9 +11,14 @@ repos:
         description: Forces to replace line ending by the UNIX 'lf' character.
       - id: check-added-large-files
         args: ["--maxkb=500"]
-      - id: check-yaml
+      - id: check-case-conflict
+      - id: check-executables-have-shebangs
       - id: check-json
-        files: ^tests/app/
+      - id: check-toml
+      - id: check-yaml
+      - id: fix-byte-order-marker
+      - id: check-merge-conflict
+      - id: check-shebang-scripts-are-executable
       - id: pretty-format-json
         args: ["--no-sort-keys", "--autofix"]
 
@@ -26,3 +31,4 @@ repos:
     hooks:
       - id: fmt
       - id: cargo-check
+      - id: clippy
